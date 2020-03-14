@@ -8,14 +8,11 @@ public class GameController : MonoBehaviour
 {
     public int maxLanes = 5;
     public int generateSpeed;
-    public float forwardSpeed;
 
     PlayerController player = new PlayerController();
     public ScoreController sc;
 
-    public GameObject[] path; //0 is single, 1 two blocks together either way(small), 2 is 3 blocks either way (medium) and 3 is 4 blocks either way (large)
-    public GameObject wall;
-    public GameObject roof;
+    public GameObject path;
     public GameObject FogWall;
     
     //public GameObject player;
@@ -38,50 +35,33 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SpawnPath();
+    }
+
+    public void SpawnPath()
+    {
+
         cnt = 0;
         counter = generateSpeed;
         distance = 0f;
 
-        easy = true;
-        med = false;
-        hard = false;
-
-        for (int x = 0; x < 7; x++)
+        for (int x = 0; x < maxLanes; x++)
         {
-            Instantiate(path[0], new Vector3(x, 0, distance), Quaternion.identity);
-            lstgameObjects.Add(path[0]);
+            Instantiate(path, new Vector3(x, 0, distance), Quaternion.identity);
+            lstgameObjects.Add(path);
         }
 
         distance++;
         counter = generateSpeed;
-        tempPlayerPos = player.GetPlayerPos();
+        
     }
 
-    private void FixedUpdate()
+    public void GenerateCourse()
     {
-
-        //while(player.alive == true)
-        //{
-        //    player.Death();
-        //    setState();
-        //    if (easy == true)
-        //    {
-
-        //    }
-        //    else if (med == true)
-        //    {
-        //        //Uses medium path
-        //    }
-        //    else if (hard == true)
-        //    {
-        //        //Uses small path
-        //    }
-        //}
-
         for (float x = 0f; x < maxLanes; x++)
         {
-            Instantiate(path[0], new Vector3(x, 0f, distance), Quaternion.identity);
-            lstgameObjects.Add(path[0]);
+            Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+            lstgameObjects.Add(path);
         }
         cnt++;
 
@@ -90,8 +70,8 @@ public class GameController : MonoBehaviour
             for (float x = 0f; x < maxLanes; x++)
             {
 
-                Instantiate(path[0], new Vector3(x, 0f, distance), Quaternion.identity);
-                lstgameObjects.Add(path[0]);
+                Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                lstgameObjects.Add(path);
 
             }
             distance++;
@@ -103,7 +83,7 @@ public class GameController : MonoBehaviour
         }
         if (distance > 10)
         {
-            if(safeZone == 0)
+            if (safeZone == 0)
             {
                 for (float x = 0f; x < maxLanes; x++)
                 {
@@ -117,13 +97,13 @@ public class GameController : MonoBehaviour
                     }
                     else if (temp == 0)
                     {
-                        Instantiate(path[0], new Vector3(x, 0f, distance), Quaternion.identity);
-                        lstgameObjects.Add(path[0]);
+                        Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                        lstgameObjects.Add(path);
                     }
                     else if (obsCnt == 2)
                     {
-                        Instantiate(path[0], new Vector3(x, 0f, distance), Quaternion.identity);
-                        lstgameObjects.Add(path[0]);
+                        Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                        lstgameObjects.Add(path);
                     }
                     if (x == maxLanes - 1)
                     {
@@ -132,62 +112,29 @@ public class GameController : MonoBehaviour
 
                 }
                 obsCnt = 0;
-                
+
             }
             else
             {
                 safeZone--;
             }
-        }            
+        }
         else
         {
             for (float x = 0f; x < maxLanes; x++)
             {
 
-                Instantiate(path[0], new Vector3(x, 0f, distance), Quaternion.identity);
-                lstgameObjects.Add(path[0]);
+                Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                lstgameObjects.Add(path);
 
             }
-            distance++;            
+            distance++;
         }
+    }
 
-
-        //Debug.Log(distance);
-        //if (distance > 8)
-        //{
-        //    temp = (Random.Range(0, 2));
-        //    Debug.Log(temp);
-        //    if (temp == 1)
-        //    {
-
-        //        Debug.Log(player.showScore);
-        //        while (obsCnt != 2)
-        //        {
-        //            Debug.Log(player.alive);
-        //            for (float x = 0f; x < maxLanes; x++)
-        //            {
-        //                if (Random.Range(0, 2) == 1)
-        //                {
-        //                    Instantiate(FogWall, new Vector3(x, 0, distance), Quaternion.identity);
-        //                    lstgameObjects.Add(FogWall);
-        //                    obsCnt++;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    if (obsCnt == 2)
-        //    {
-        //        obsCnt = 0;
-        //    }
-
-        //tempPlayerPos = player.GetPlayerPos();
-        //foreach (GameObject g in lstgameObjects)
-        //{
-        //    if (g.transform.position.z == tempPlayerPos.z - 3)
-        //    {
-        //        Destroy(g);
-        //    }
-        //}
+    private void FixedUpdate()
+    {
+        GenerateCourse();
     }
     
 
