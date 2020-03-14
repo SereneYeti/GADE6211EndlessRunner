@@ -87,14 +87,16 @@ public class GameController : MonoBehaviour
         {
             if (safeZone == 0)
             {
+                int temp2 = 0;
+                temp2 = Random.Range(0, 3);
+
                 for (float x = 0f; x < maxLanes; x++)
                 {
 
                     temp = (Random.Range(0, 2));
                     if (temp == 1 && obsCnt < 2)
                     {
-                        int temp2 = 0;
-                        temp2 = Random.Range(0, 3);
+                        
                         Instantiate(Obstacles[temp2], new Vector3(x, 0.5f, distance), Quaternion.identity);
                         
                         lstgameObjects.Add(Obstacles[temp2]);
