@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public TMPro.TextMeshProUGUI showScore;
     public ScoreController sc;
+    public GameManager gameManager;
 
     private Vector3 playerPos;
     // Start is called before the first frame update
@@ -23,11 +24,12 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<GameObject>();
         playerPos = GetComponent<Transform>().position;
         sc = new ScoreController();
+        gameManager = new GameManager();
         //showScore = GetComponent<TMPro.TextMeshProUGUI>();
 
         alive = true;
-        sc.Score = 0;
-        showScore.text = "Score = " + sc.Score;
+        gameManager.Score = 0;
+        showScore.text = "Score = " + gameManager.Score;
     }
 
     // Update is called once per frame
@@ -35,7 +37,8 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
         sc.IncreaseScore();
-        showScore.text = "Score = " + sc.Score;
+        showScore.text = "Score = " + gameManager.Score;
+        Debug.Log(gameManager.Score);
     }
 
 

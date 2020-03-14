@@ -4,50 +4,24 @@ using UnityEngine;
 
 public class ScoreController : MonoBehaviour
 {
-    private static ScoreController instance = null;
-
-    public static ScoreController Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
-
-    private int score;
-
-    public int Score
-    {
-        get
-        {
-            return score;
-        }
-        set
-        {
-            score = value;
-        }
-    }
+    public GameManager gameManager = new GameManager();
 
     public ScoreController() { }
     public void IncreaseScore()
     {
-        Score = Mathf.RoundToInt(Time.timeSinceLevelLoad);
+        gameManager.Score++;
     }
 
     private void Awake()
     {
-        if(instance)
-        {
-            DestroyImmediate(gameObject);
-            return;
-        }
 
-        instance = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        
+        
         
     }
 

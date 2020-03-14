@@ -154,17 +154,17 @@ public class GameController : MonoBehaviour
 
     private void setState()
     {
-        if (sc.Score == 120)
-        {
-            easy = false;
-            med = true;
-            hard = false;
-        }
-        else if (sc.Score == 240)
-        {
-            easy = false;
-            med = false;
-            hard = true;
-        }
+        //if (sc.Score == 120)
+        //{
+        //    easy = false;
+        //    med = true;
+        //    hard = false;
+        //}
+        //else if (sc.Score == 240)
+        //{
+        //    easy = false;
+        //    med = false;
+        //    hard = true;
+        //}
     }
 }
