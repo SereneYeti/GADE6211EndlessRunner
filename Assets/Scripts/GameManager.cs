@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     List<int> HighScores;
 
     public int forwardSpeed = 10;
+    public int generateSpeed = 10;
     public int Score = 0;
 
     GameController course = new GameController();

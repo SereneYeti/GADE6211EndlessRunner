@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
 
     public GameObject path;
     public GameObject FogWall;
-    
+    public GameObject[] Obstacles;
     //public GameObject player;
 
     //public GameObject[] course;
@@ -29,9 +29,11 @@ public class GameController : MonoBehaviour
     private bool easy = true;
     private bool med = false;
     private bool hard = false;
+
     private int obsCnt = 0;
     private int temp;
     private int safeZone = 20;
+    public int SafeZone;
     // Start is called before the first frame update
     void Start()
     {
@@ -91,7 +93,10 @@ public class GameController : MonoBehaviour
                     temp = (Random.Range(0, 2));
                     if (temp == 1 && obsCnt < 2)
                     {
-                        Instantiate(FogWall, new Vector3(x, 1f, distance), Quaternion.identity);
+                        int temp2 = 0;
+                        temp2 = Random.Range(0, 3);
+                        Instantiate(Obstacles[temp2], new Vector3(x, 0.5f, distance), Quaternion.identity);
+                        
                         lstgameObjects.Add(FogWall);
                         obsCnt++;
                     }
@@ -107,7 +112,7 @@ public class GameController : MonoBehaviour
                     }
                     if (x == maxLanes - 1)
                     {
-                        safeZone = 20;
+                        safeZone = SafeZone;
                     }
 
                 }
@@ -132,6 +137,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    
     private void FixedUpdate()
     {
         GenerateCourse();
