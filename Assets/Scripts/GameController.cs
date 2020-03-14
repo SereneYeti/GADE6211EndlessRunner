@@ -97,7 +97,7 @@ public class GameController : MonoBehaviour
                         temp2 = Random.Range(0, 3);
                         Instantiate(Obstacles[temp2], new Vector3(x, 0.5f, distance), Quaternion.identity);
                         
-                        lstgameObjects.Add(FogWall);
+                        lstgameObjects.Add(Obstacles[temp2]);
                         obsCnt++;
                     }
                     else if (temp == 0)
@@ -136,8 +136,7 @@ public class GameController : MonoBehaviour
             distance++;
         }
     }
-
-    
+           
     private void FixedUpdate()
     {
         GenerateCourse();

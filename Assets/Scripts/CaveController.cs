@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CaveController : MonoBehaviour
 {
-    public BoxCollider caveBounds;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +13,7 @@ public class CaveController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Hi");
+        //Debug.Log("Hi");
         Destroy(other.gameObject);
     }
 
