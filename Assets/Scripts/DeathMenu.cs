@@ -32,7 +32,7 @@ public class DeathMenu : MonoBehaviour
     }
     void PlayGameAgain()
     {
-        Debug.Log("PlayAgain");
+        //Debug.Log("PlayAgain");
         SceneManager.LoadScene(1);
     }
     void QuitGame()

@@ -27,7 +27,21 @@ public class ObstacleController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.tag == "Path") && (gameObject.transform.position.x == other.gameObject.transform.position.x) &&
+        if ((gameObject.transform.position.x == other.gameObject.transform.position.x) &&
+            (gameObject.transform.position.y >= other.gameObject.transform.position.y) &&
+            (gameObject.transform.position.z == other.gameObject.transform.position.z))
+        {
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene("DeathScreen");
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if ((gameObject.transform.position.x == other.gameObject.transform.position.x) &&
             (gameObject.transform.position.y >= other.gameObject.transform.position.y) &&
             (gameObject.transform.position.z == other.gameObject.transform.position.z))
         {

@@ -559,6 +559,11 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1473713603}
+    - target: {fileID: 2718469906367473089, guid: a46376b81780b814e83962b0dc2dec02,
+        type: 3}
+      propertyPath: jumpSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2718469906367473090, guid: a46376b81780b814e83962b0dc2dec02,
         type: 3}
       propertyPath: m_Name
@@ -663,6 +668,18 @@ PrefabInstance:
       propertyPath: sc
       value: 
       objectReference: {fileID: 997057360}
+    - target: {fileID: 4289467861056602712, guid: 3f40f683376ba18448c8ebdf92ba4c38,
+        type: 3}
+      propertyPath: Obstacles.Array.data[1]
+      value: 
+      objectReference: {fileID: 2821907430445173848, guid: 38ee402fabef09640af8d3b436e8ec60,
+        type: 3}
+    - target: {fileID: 4289467861056602712, guid: 3f40f683376ba18448c8ebdf92ba4c38,
+        type: 3}
+      propertyPath: coin
+      value: 
+      objectReference: {fileID: 7673212705776514305, guid: 1ed6bc4165153344f989e99cc0322f5d,
+        type: 3}
     - target: {fileID: 4289467861056602713, guid: 3f40f683376ba18448c8ebdf92ba4c38,
         type: 3}
       propertyPath: m_Name

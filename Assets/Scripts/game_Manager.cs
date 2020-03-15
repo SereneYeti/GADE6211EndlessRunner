@@ -47,14 +47,15 @@ public class game_Manager : MonoBehaviour
            
             course.SpawnPath();
             player.PlayerSetup();
-        }      
-                
+        }
+               
     }
     
     public void FindObjects()
     {
         course = FindObjectOfType<GameController>();
         player = FindObjectOfType<PlayerController>();
+        Score = 0;
     }
 
     // Update is called once per frame

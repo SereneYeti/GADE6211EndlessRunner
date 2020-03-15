@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     public ScoreController sc;
 
     public GameObject path;
-    public GameObject FogWall;
+    public GameObject coin;
     public GameObject[] Obstacles;
     //public GameObject player;
 
@@ -34,6 +34,7 @@ public class GameController : MonoBehaviour
     private int temp;
     private int safeZone = 20;
     public int SafeZone;
+    private bool holes = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,40 +63,57 @@ public class GameController : MonoBehaviour
 
     public void GenerateCourse()
     {
-        for (float x = 0f; x < maxLanes; x++)
-        {
-            Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
-            lstgameObjects.Add(path);
-        }
-        cnt++;
+        
+        int temp2 = 0;
 
-        if (counter == 0)
-        {
-            for (float x = 0f; x < maxLanes; x++)
-            {
-
-                Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
-                lstgameObjects.Add(path);
-
-            }
-            distance++;
-            counter = generateSpeed;
-        }
-        else
-        {
-            counter--;
-        }
         if (distance > 10)
         {
             if (safeZone == 0)
             {
-                int temp2 = 0;
+                
                 temp2 = Random.Range(0, 3);
 
                 GenerateObstacles(temp2);
             }
+            else if (holes == true && safeZone == 0)
+            {
+                for (float x = 0f; x < maxLanes; x++)
+                {
+                    if (x % 2 == 0)
+                    {
+                        Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                        lstgameObjects.Add(path);
+                    }
+
+
+                }
+                distance++;
+                holes = false;
+                safeZone = SafeZone;
+            }
             else
             {
+                if (counter == 0)
+                {
+                    for (float x = 0f; x < maxLanes; x++)
+                    {
+
+                        Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                        lstgameObjects.Add(path);
+
+                    }
+                    distance++;
+                    counter = generateSpeed;
+                }
+                else
+                {
+                    counter--;
+                }
+                if(Random.Range(0,2)==1)
+                {
+                    Instantiate(coin, new Vector3(Random.Range(0,maxLanes), 1f, distance), Quaternion.identity);
+                    lstgameObjects.Add(coin);
+                }
                 safeZone--;
             }
         }
@@ -108,8 +126,14 @@ public class GameController : MonoBehaviour
                 lstgameObjects.Add(path);
 
             }
+            if (Random.Range(0, 2) == 1)
+            {
+                Instantiate(coin, new Vector3(Random.Range(0, maxLanes), 1f, distance), Quaternion.identity);
+                lstgameObjects.Add(coin);
+            }
             distance++;
         }
+        
     }
            
     private void FixedUpdate()
@@ -127,7 +151,7 @@ public class GameController : MonoBehaviour
                     for (float x = 0f; x < maxLanes; x++)
                     {
                         temp = (Random.Range(0, 2));
-                        if (temp == 1 && obsCnt < 2)
+                        if (temp == 1&&obsCnt<maxLanes-1)
                         {
 
                             Instantiate(Obstacles[obs], new Vector3(x, 0.5f, distance), Quaternion.identity);
@@ -139,11 +163,11 @@ public class GameController : MonoBehaviour
                             Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
                             lstgameObjects.Add(path);
                         }
-                        else if (obsCnt == 2)
-                        {
-                            Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
-                            lstgameObjects.Add(path);
-                        }
+                        //else if (obsCnt == 2)
+                        //{
+                        //    Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                        //    lstgameObjects.Add(path);
+                        //}
                         if (x == maxLanes - 1)
                         {
                             safeZone = SafeZone;
@@ -156,21 +180,7 @@ public class GameController : MonoBehaviour
 
             case 1:
                 {
-                    //Hole
-                    for (float x = 0f; x < maxLanes; x++)
-                    {
-                        temp = (Random.Range(0, 2));
-                        if (temp == 1)
-                        {
-
-                            Instantiate(Obstacles[obs], new Vector3(x, 0.5f, distance), Quaternion.identity);
-                            lstgameObjects.Add(Obstacles[obs]);
-                            obsCnt++;
-                        }
-                        
-
-                    }
-                    obsCnt = 0;
+                    holes = true;
                     break;
                 }
             case 2:
