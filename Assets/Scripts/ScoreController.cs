@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScoreController : MonoBehaviour
 {
-    public GameManager gameManager = new GameManager();
+    public game_Manager gameManager;
 
     public ScoreController() { }
     public void IncreaseScore()
@@ -14,9 +14,13 @@ public class ScoreController : MonoBehaviour
 
     private void Awake()
     {
-
+        gameManager = FindObjectOfType<game_Manager>();
     }
 
+    public int GetScore()
+    {
+        return gameManager.Score;
+    }
     // Start is called before the first frame update
     void Start()
     {

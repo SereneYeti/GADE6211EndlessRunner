@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,20 +12,20 @@ public class PlayerController : MonoBehaviour
 
     public TMPro.TextMeshProUGUI showScore;
     public ScoreController sc;
-    public GameManager gameManager;
+    public game_Manager gameManager;
 
     private Vector3 playerPos;
     // Start is called before the first frame update
     void Start()
     {
-        
+       // Debug.Log("P");
     }
     private void Awake()
     {
         player = GetComponent<GameObject>();
         playerPos = GetComponent<Transform>().position;
-        sc = new ScoreController();
-        gameManager = new GameManager();
+        //sc = GetComponent<ScoreController>();
+        //gameManager = GetComponent <game_Manager>();
         //showScore = GetComponent<TMPro.TextMeshProUGUI>();
 
         alive = true;
@@ -38,7 +39,8 @@ public class PlayerController : MonoBehaviour
         Movement();
         sc.IncreaseScore();
         showScore.text = "Score = " + gameManager.Score;
-        Debug.Log(gameManager.Score);
+        //Debug.Log(gameManager.Score);
+        Death();
     }
 
 
@@ -70,6 +72,7 @@ public class PlayerController : MonoBehaviour
         if(GetPlayerPos().y <= -3)
         {
             alive = false;
+            SceneManager.LoadScene("DeathScreen");
         }
     }
 }

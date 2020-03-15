@@ -12,6 +12,7 @@ public class MenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Debug.Log("M");
         btnPlay.onClick.AddListener(this.PlayGame);
         btnQuit.onClick.AddListener(this.QuitGame);
     }
@@ -23,7 +24,7 @@ public class MenuController : MonoBehaviour
     }
     void PlayGame()
     {
-        Debug.Log("HI");
+        //Debug.Log("HI");
         SceneManager.LoadScene("Level1");
     }
     void QuitGame()

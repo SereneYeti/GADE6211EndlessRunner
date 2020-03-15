@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class game_Manager : MonoBehaviour
 {
-    private static GameManager instance = null;
-    public static GameManager Instance
+    private static game_Manager instance = null;
+    public static game_Manager Instance
     {   //Read only
         get
         {
@@ -19,7 +20,10 @@ public class GameManager : MonoBehaviour
     public int generateSpeed = 10;
     public int Score = 0;
 
-    GameController course = new GameController();
+   
+
+    public GameController course = new GameController();
+    Scene test;
     private void Awake()
     {
         if(instance)
@@ -35,12 +39,24 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //course.SpawnPath();
+        //Debug.Log("GM");
+        test = SceneManager.GetActiveScene();
+        if(test.name == "Level1")
+        {
+            course.SpawnPath();
+        }
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //course.GenerateCourse();
+        test = SceneManager.GetActiveScene();
+        if (test.name == "Level1")
+        {
+            course.GenerateCourse();
+        }
+            
     }
 }
