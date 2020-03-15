@@ -482,12 +482,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 508725641}
---- !u!65 &989902679 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 692135689382983410, guid: a46376b81780b814e83962b0dc2dec02,
-    type: 3}
-  m_PrefabInstance: {fileID: 2718469906471185483}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &997057360 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5639205103620510798, guid: 3a658ad82791055489cf38d54c7d2dff,
@@ -638,7 +632,7 @@ PrefabInstance:
         type: 3}
       propertyPath: caveBounds
       value: 
-      objectReference: {fileID: 989902679}
+      objectReference: {fileID: 0}
     - target: {fileID: 8696160543831176101, guid: a46376b81780b814e83962b0dc2dec02,
         type: 3}
       propertyPath: m_Radius

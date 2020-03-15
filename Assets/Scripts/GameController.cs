@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public int maxLanes = 5;
+    public int maxLanes = 6;
     public int generateSpeed;
 
     PlayerController player = new PlayerController();
@@ -109,7 +109,7 @@ public class GameController : MonoBehaviour
                 {
                     counter--;
                 }
-                if(Random.Range(0,2)==1)
+                if(Random.Range(0,4)==1)
                 {
                     Instantiate(coin, new Vector3(Random.Range(0,maxLanes), 1f, distance), Quaternion.identity);
                     lstgameObjects.Add(coin);
