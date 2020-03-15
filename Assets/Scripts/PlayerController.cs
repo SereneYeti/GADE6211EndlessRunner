@@ -108,7 +108,15 @@ public class PlayerController : MonoBehaviour
         {
             this.transform.localScale = this.transform.localScale * 2;
         }
+        if(Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene(1);
+        }        
         playerPos = GetComponent<Transform>().position;
+        if(GetPlayerPos().x != Mathf.Round(GetPlayerPos().x))
+        {
+            player.transform.position = new Vector3(Mathf.Round(player.transform.position.x), player.transform.position.y, player.transform.position.z);
+        }
     }
 
     public Vector3 GetPlayerPos()

@@ -73,6 +73,7 @@ public class GameController : MonoBehaviour
                 temp2 = Random.Range(0, 3);
 
                 GenerateObstacles(temp2);
+                
             }           
             else
             {
@@ -96,9 +97,9 @@ public class GameController : MonoBehaviour
                 {
                     counter--;
                 }
-                if(Random.Range(0,5)==1)
+                if (Random.Range(0, 5) == 1)
                 {
-                    Instantiate(coin, new Vector3(Random.Range(0,maxLanes), 1f, distance), Quaternion.identity);
+                    Instantiate(coin, new Vector3(Random.Range(0, maxLanes), 1f, distance), Quaternion.identity);
                     lstgameObjects.Add(coin);
                 }
                 safeZone--;
@@ -113,8 +114,8 @@ public class GameController : MonoBehaviour
                     lstgameObjects.Add(path);
                 
 
-            }            
-            if (Random.Range(0, 2) == 1)
+            }
+            if (Random.Range(0, 5) == 1)
             {
                 Instantiate(coin, new Vector3(Random.Range(0, maxLanes), 1f, distance), Quaternion.identity);
                 lstgameObjects.Add(coin);
@@ -196,7 +197,6 @@ public class GameController : MonoBehaviour
 
                     }
                     obsCnt = 0;
-                    break;
                     break;
                 }
             case 2:

@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class ObstacleController : MonoBehaviour
 {
+    public ScoreController sc;
     // Start is called before the first frame update
     void Start()
     {
-        
+        sc = FindObjectOfType<ScoreController>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -46,6 +47,10 @@ public class ObstacleController : MonoBehaviour
             (gameObject.transform.position.z == other.gameObject.transform.position.z))
         {
             Destroy(other.gameObject);
+            if(other.gameObject.tag == "Obstacle")
+            {
+                sc.IncreaseScore();
+            }
         }
     }
     // Update is called once per frame
