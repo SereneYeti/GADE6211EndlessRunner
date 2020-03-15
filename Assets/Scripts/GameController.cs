@@ -92,36 +92,7 @@ public class GameController : MonoBehaviour
                 int temp2 = 0;
                 temp2 = Random.Range(0, 3);
 
-                for (float x = 0f; x < maxLanes; x++)
-                {
-
-                    temp = (Random.Range(0, 2));
-                    if (temp == 1 && obsCnt < 2)
-                    {
-                        
-                        Instantiate(Obstacles[temp2], new Vector3(x, 0.5f, distance), Quaternion.identity);
-                        
-                        lstgameObjects.Add(Obstacles[temp2]);
-                        obsCnt++;
-                    }
-                    else if (temp == 0)
-                    {
-                        Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
-                        lstgameObjects.Add(path);
-                    }
-                    else if (obsCnt == 2)
-                    {
-                        Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
-                        lstgameObjects.Add(path);
-                    }
-                    if (x == maxLanes - 1)
-                    {
-                        safeZone = SafeZone;
-                    }
-
-                }
-                obsCnt = 0;
-
+                GenerateObstacles(temp2);
             }
             else
             {
@@ -146,7 +117,93 @@ public class GameController : MonoBehaviour
         GenerateCourse();
     }
     
+    private void GenerateObstacles(int obs)
+    {
+        switch(obs)
+        {
+            case 0:
+                {
+                    //Wall
+                    for (float x = 0f; x < maxLanes; x++)
+                    {
+                        temp = (Random.Range(0, 2));
+                        if (temp == 1 && obsCnt < 2)
+                        {
 
+                            Instantiate(Obstacles[obs], new Vector3(x, 0.5f, distance), Quaternion.identity);
+                            lstgameObjects.Add(Obstacles[obs]);
+                            obsCnt++;
+                        }
+                        else if (temp == 0)
+                        {
+                            Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                            lstgameObjects.Add(path);
+                        }
+                        else if (obsCnt == 2)
+                        {
+                            Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                            lstgameObjects.Add(path);
+                        }
+                        if (x == maxLanes - 1)
+                        {
+                            safeZone = SafeZone;
+                        }
+
+                    }
+                    obsCnt = 0;
+                    break;
+                }
+
+            case 1:
+                {
+                    //Hole
+                    for (float x = 0f; x < maxLanes; x++)
+                    {
+                        temp = (Random.Range(0, 2));
+                        if (temp == 1)
+                        {
+
+                            Instantiate(Obstacles[obs], new Vector3(x, 0.5f, distance), Quaternion.identity);
+                            lstgameObjects.Add(Obstacles[obs]);
+                            obsCnt++;
+                        }
+                        
+
+                    }
+                    obsCnt = 0;
+                    break;
+                }
+            case 2:
+                {
+                    //Tentacles
+                    for (float x = 0f; x < maxLanes; x++)
+                    {
+                        temp = (Random.Range(0, 2));
+                        if (temp == 1)
+                        {
+
+                            Instantiate(Obstacles[obs], new Vector3(x, 0.5f, distance), Quaternion.identity);
+                            lstgameObjects.Add(Obstacles[obs]);
+                            obsCnt++;
+                        }
+                        else
+                        {
+                            Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                            lstgameObjects.Add(path);
+                        }
+                        if (x == maxLanes - 1)
+                        {
+                            safeZone = SafeZone;
+                        }
+
+                    }
+                    obsCnt = 0;
+                    break;
+                }
+              default:
+                break;
+        }
+    }
 
     // Update is called once per frame
     void Update()
