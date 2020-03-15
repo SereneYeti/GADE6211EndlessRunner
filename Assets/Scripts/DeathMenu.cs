@@ -15,12 +15,16 @@ public class DeathMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        btnPlayAgain.onClick.AddListener(this.PlayGameAgain);
-        btnQuit.onClick.AddListener(this.QuitGame);
+        
         //Debug.Log("DM");
         score.text = "Your Score is " + sc.GetScore();
     }
 
+    private void Awake()
+    {
+        btnPlayAgain.onClick.AddListener(this.PlayGameAgain);
+        btnQuit.onClick.AddListener(this.QuitGame);
+    }
     // Update is called once per frame
     void Update()
     {

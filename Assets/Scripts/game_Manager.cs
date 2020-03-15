@@ -44,9 +44,8 @@ public class game_Manager : MonoBehaviour
         if(test.name == "Level1")
         {
             course.SpawnPath();
-        }
-        
-        
+        }      
+                
     }
 
     // Update is called once per frame
