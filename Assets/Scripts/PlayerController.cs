@@ -8,21 +8,21 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject player;
     public float forwardSpeed;
-    public float jumpSpeed
-    ;
+    public float jumpSpeed;
     public bool alive = true;
 
     public TMPro.TextMeshProUGUI showScore;
     public ScoreController sc;
     public game_Manager gameManager;
-    //private Rigidbody rb;
+    private Rigidbody rb;
     private Vector3 playerPos;
     public bool onPath = true;
+    private bool isJumping = false;
     // Start is called before the first frame update
     void Start()
     {
         // Debug.Log("P");
-        //rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         if (gameManager == null)
         {
             gameManager = FindObjectOfType<game_Manager>();
@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
        
+
     }
     private void Awake()
     {
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour
     {
 
         //player.transform.position = transform.position + (Vector3.forward * forwardSpeed * Time.deltaTime);
-        transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * gameManager.forwardSpeed * Time.deltaTime);
         //rb.AddForce(Vector3.forward*forwardSpeed*Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -95,9 +96,17 @@ public class PlayerController : MonoBehaviour
             if (onPath)
             {
                 onPath = false;
-                transform.Translate(Vector3.up * jumpSpeed);
+                transform.Translate(Vector3.up * gameManager.jumpSpeed);
                 //rb.AddForce(Vector3.up * jumpSpeed * Time.deltaTime);
             }
+        }
+        if(Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            this.transform.localScale = this.transform.localScale / 2;
+        }
+        if(Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            this.transform.localScale = this.transform.localScale * 2;
         }
         playerPos = GetComponent<Transform>().position;
     }

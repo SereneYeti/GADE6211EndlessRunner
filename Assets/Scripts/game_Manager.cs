@@ -18,6 +18,7 @@ public class game_Manager : MonoBehaviour
 
     public int forwardSpeed = 10;
     public int generateSpeed = 10;
+    public float jumpSpeed = 2;
     public int Score = 0;
 
 

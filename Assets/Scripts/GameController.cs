@@ -34,7 +34,6 @@ public class GameController : MonoBehaviour
     private int temp;
     private int safeZone = 20;
     public int SafeZone;
-    private bool holes = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -74,23 +73,7 @@ public class GameController : MonoBehaviour
                 temp2 = Random.Range(0, 3);
 
                 GenerateObstacles(temp2);
-            }
-            else if (holes == true && safeZone == 0)
-            {
-                for (float x = 0f; x < maxLanes; x++)
-                {
-                    if (x % 2 == 0)
-                    {
-                        Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
-                        lstgameObjects.Add(path);
-                    }
-
-
-                }
-                distance++;
-                holes = false;
-                safeZone = SafeZone;
-            }
+            }           
             else
             {
                 if (counter == 0)
@@ -98,18 +81,22 @@ public class GameController : MonoBehaviour
                     for (float x = 0f; x < maxLanes; x++)
                     {
 
-                        Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
-                        lstgameObjects.Add(path);
+                            Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                            lstgameObjects.Add(path);
+                        
+                        
 
                     }
+                    
                     distance++;
+                    
                     counter = generateSpeed;
                 }
                 else
                 {
                     counter--;
                 }
-                if(Random.Range(0,4)==1)
+                if(Random.Range(0,5)==1)
                 {
                     Instantiate(coin, new Vector3(Random.Range(0,maxLanes), 1f, distance), Quaternion.identity);
                     lstgameObjects.Add(coin);
@@ -121,11 +108,12 @@ public class GameController : MonoBehaviour
         {
             for (float x = 0f; x < maxLanes; x++)
             {
+              
+                    Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                    lstgameObjects.Add(path);
+                
 
-                Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
-                lstgameObjects.Add(path);
-
-            }
+            }            
             if (Random.Range(0, 2) == 1)
             {
                 Instantiate(coin, new Vector3(Random.Range(0, maxLanes), 1f, distance), Quaternion.identity);
@@ -180,7 +168,35 @@ public class GameController : MonoBehaviour
 
             case 1:
                 {
-                    holes = true;
+                    //Floating Block
+                    for (float x = 0f; x < maxLanes; x++)
+                    {
+                        temp = (Random.Range(0, 2));
+                        if (temp == 1 && obsCnt < maxLanes - 1)
+                        {
+
+                            Instantiate(Obstacles[obs], new Vector3(x, 3, distance), Quaternion.identity);
+                            lstgameObjects.Add(Obstacles[obs]);
+                            obsCnt++;
+                        }
+                        else if (temp == 0)
+                        {
+                            Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                            lstgameObjects.Add(path);
+                        }
+                        //else if (obsCnt == 2)
+                        //{
+                        //    Instantiate(path, new Vector3(x, 0f, distance), Quaternion.identity);
+                        //    lstgameObjects.Add(path);
+                        //}
+                        if (x == maxLanes - 1)
+                        {
+                            safeZone = SafeZone;
+                        }
+
+                    }
+                    obsCnt = 0;
+                    break;
                     break;
                 }
             case 2:
