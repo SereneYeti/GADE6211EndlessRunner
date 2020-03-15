@@ -20,8 +20,8 @@ public class game_Manager : MonoBehaviour
     public int generateSpeed = 10;
     public int Score = 0;
 
-   
 
+    public PlayerController player = new PlayerController();
     public GameController course = new GameController();
     Scene test;
     private void Awake()
@@ -35,6 +35,7 @@ public class game_Manager : MonoBehaviour
         instance = this;
         //Make Game Manager Persist.
         DontDestroyOnLoad(gameObject);
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -43,18 +44,33 @@ public class game_Manager : MonoBehaviour
         test = SceneManager.GetActiveScene();
         if(test.name == "Level1")
         {
+           
             course.SpawnPath();
+            player.PlayerSetup();
         }      
                 
+    }
+    
+    public void FindObjects()
+    {
+        course = FindObjectOfType<GameController>();
+        player = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(course==null&player==null)
+        {
+            FindObjects();
+        }
         test = SceneManager.GetActiveScene();
         if (test.name == "Level1")
         {
             course.GenerateCourse();
+            player.Movement();
+            player.HandleScore();
+            player.Death();
         }
             
     }

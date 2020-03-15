@@ -22,6 +22,11 @@ public class PlayerController : MonoBehaviour
     }
     private void Awake()
     {
+       
+    }
+
+    public void PlayerSetup()
+    {
         player = GetComponent<GameObject>();
         playerPos = GetComponent<Transform>().position;
         //sc = GetComponent<ScoreController>();
@@ -32,19 +37,18 @@ public class PlayerController : MonoBehaviour
         gameManager.Score = 0;
         showScore.text = "Score = " + gameManager.Score;
     }
-
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        sc.IncreaseScore();
-        showScore.text = "Score = " + gameManager.Score;
-        //Debug.Log(gameManager.Score);
-        Death();
+        
     }
 
-
-    void Movement()
+    public void HandleScore()
+    {
+        sc.IncreaseScore();
+        showScore.text = "Score = " + gameManager.Score;
+    }
+    public void Movement()
     {
        
         //player.transform.position = transform.position + (Vector3.forward * forwardSpeed * Time.deltaTime);

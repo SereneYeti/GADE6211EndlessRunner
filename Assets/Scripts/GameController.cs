@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         //Debug.Log("GC");
-        SpawnPath();
+        //SpawnPath();
     }
     
 
@@ -114,7 +114,7 @@ public class GameController : MonoBehaviour
            
     private void FixedUpdate()
     {
-        GenerateCourse();
+        //GenerateCourse();
     }
     
     private void GenerateObstacles(int obs)

@@ -46,3 +46,5 @@ MonoBehaviour:
   forwardSpeed: 10
   generateSpeed: 10
   Score: 0
+  player: {fileID: 0}
+  course: {fileID: 0}
