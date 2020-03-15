@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenu : MonoBehaviour
 {
-    public Button btnPlay;
+    public Button btnPlayAgain;
     public Button btnQuit;
 
     public GameManager gameManager;
@@ -14,7 +14,7 @@ public class DeathMenu : MonoBehaviour
     void Start()
     {
         gameManager = new GameManager();
-        btnPlay.onClick.AddListener(this.PlayGame);
+        btnPlayAgain.onClick.AddListener(this.PlayGameAgain);
         btnQuit.onClick.AddListener(this.QuitGame);
     }
 
@@ -23,9 +23,9 @@ public class DeathMenu : MonoBehaviour
     {
 
     }
-    void PlayGame()
+    void PlayGameAgain()
     {
-       
+        Debug.Log("PlayAgain");
         SceneManager.LoadScene(1);
     }
     void QuitGame()
