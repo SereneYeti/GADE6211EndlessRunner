@@ -11,7 +11,6 @@ public class GameController : MonoBehaviour
 
     PlayerController player = new PlayerController();
     public ScoreController sc;
-
     public GameObject path;
     public GameObject coin;
     public GameObject[] Obstacles;
@@ -39,6 +38,7 @@ public class GameController : MonoBehaviour
     {
         //Debug.Log("GC");
         //SpawnPath();
+       
     }
     
 
@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
         }
 
         distance++;
-        counter = generateSpeed;
+        counter = generateSpeed; ;
         
     }
 
@@ -91,7 +91,7 @@ public class GameController : MonoBehaviour
                     
                     distance++;
                     
-                    counter = generateSpeed;
+                    counter = generateSpeed; 
                 }
                 else
                 {

@@ -77,21 +77,25 @@ public class PlayerController : MonoBehaviour
     }
     public void Movement()
     {
+        //Might be used at a later stage.
+        //float horizontal = Input.GetAxisRaw("Horizontal");
+        //float vertical = Input.GetAxisRaw("Vertical");
 
         //player.transform.position = transform.position + (Vector3.forward * forwardSpeed * Time.deltaTime);
         transform.Translate(Vector3.forward * gameManager.forwardSpeed * Time.deltaTime);
         //rb.AddForce(Vector3.forward*forwardSpeed*Time.deltaTime);
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.LeftArrow))
         {
             transform.position = new Vector3(transform.position.x - 1f, transform.position.y, transform.position.z);
             //rb.AddForce(Vector3.left * forwardSpeed * Time.deltaTime);
         }
-        if (Input.GetKeyDown(KeyCode.D))
+
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             transform.position = new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z);
             //rb.AddForce(Vector3.right * forwardSpeed * Time.deltaTime);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (onPath)
             {
@@ -100,11 +104,12 @@ public class PlayerController : MonoBehaviour
                 //rb.AddForce(Vector3.up * jumpSpeed * Time.deltaTime);
             }
         }
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             this.transform.localScale = this.transform.localScale / 2;
         }
-        if(Input.GetKeyUp(KeyCode.LeftControl))
+        if(Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.DownArrow))
         {
             this.transform.localScale = this.transform.localScale * 2;
         }

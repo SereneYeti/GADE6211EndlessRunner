@@ -62,7 +62,18 @@ public class game_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(course==null&player==null)
+        if (test.name == "Level1")
+        {
+            player.Movement();
+            player.HandleScore();
+            player.Death();
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (course == null & player == null)
         {
             FindObjects();
         }
@@ -70,10 +81,7 @@ public class game_Manager : MonoBehaviour
         if (test.name == "Level1")
         {
             course.GenerateCourse();
-            player.Movement();
-            player.HandleScore();
-            player.Death();
-        }
             
+        }
     }
 }
